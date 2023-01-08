@@ -21,7 +21,7 @@ export namespace OrdersService {
             throw new NotFoundError()
 
         if (order.payers.find(payer => payer.email === addPayerDto.email)) {
-            throw new FailedConstraintError('A payer already exists with this email.')
+            throw new FailedConstraintError('A payer with this email already exists.')
         }
 
         const payer = new Payer()
