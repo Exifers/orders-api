@@ -14,6 +14,9 @@ const handleError: Parameters<FastifyInstance['setErrorHandler']>[0] = (error, r
     if (error instanceof ZodError) {
         return reply.status(400).send({type:'validation', payload: error.issues})
     }
+    if ('statusCode' in error) {
+        return reply.status(error.statusCode as number).send()
+    }
     reply.status(500).send()
 }
 
